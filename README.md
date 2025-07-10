@@ -1,133 +1,77 @@
-# 📊 Organization Database Schema
-
-This document provides an overview of the relational database schema designed for managing various aspects of an organization, including departments, employees, projects, policies, teams, events, and associated resources.
-
----
-
-## 🧱 Entity Overview
-
-### 🔹 Department
-- *Fields:* ID, Name, Description, Budget, LeadedID, ChannelID
-- *Relationships:*
-  - Has many *Projects, **Policies, and **Teams*
-  - Uses *Channels*
+# 🌐 CollabNet  
+A structured and scalable database management system designed to streamline team collaboration, task management, and resource allocation within an organization. Built using PostgreSQL with complete normalization and referential integrity.
 
 ---
 
-### 🔹 Employee
-- *Fields:* ID, Name, DateOfBirth, Gender, Address (Street, City, Pincode), Email (Work, Personal), Availability, FeedbackID, ContactInfo, LeadBy, ReportsTo
-- *Relationships:*
-  - Works on multiple *Projects*
-  - Gives and receives *Feedback*
-  - Has one *Resume*
-  - Leads and Contacts other employees
+## 📚 Project Overview  
+**CollabNet** is a relational database project built to reflect how modern organizations manage their departments, employees, tasks, events, and internal resources. It models real-world collaborative workflows, enabling efficient team coordination and central information tracking.
+
+> “The aim was to build a fully normalized DBMS that captures enterprise-level interactions — from project planning and employee task allocation to event participation and feedback management.”
 
 ---
 
-### 🔹 Project
-- *Fields:* ID, Name, StartDate, DueDate, Status, Budget, Objective, DepartmentID
-- *Relationships:*
-  - Tracked by *Employees*
-  - Includes *Feedback*
-  - Troubleshoots using *Resources*
+## 🛠️ Key Features  
+
+- 🧱 **Fully normalized schema** (up to BCNF)  
+- 📄 **17+ relational tables** with modular DDL  
+- 🔐 **Referential integrity** via foreign keys and bridge tables  
+- 🔍 **Supports complex SQL queries** (joins, filters, aggregations)  
+- 📊 Includes detailed **ER Diagram** and **Relational Schema**  
+- 🧪 Built and tested on **PostgreSQL** using **pgAdmin**  
 
 ---
 
-### 🔹 Feedback
-- *Fields:* ID, Title, Description, Tags
-- *Relationships:* Linked to *Employees* and *Projects*
+## 🧾 Core Modules  
+
+### 👥 Employee Management  
+- Unique employee profiles with fields: name, DOB, contact, department, etc.  
+- Tracks location, gender, availability, and designation  
+
+### 🏢 Department & Role System  
+- Departments linked to employees and projects  
+- Role-based access through designation and hierarchy  
+
+### 📂 Project & Task Allocation  
+- Projects contain title, deadline, and budget  
+- Tasks assigned under projects with details like start/end date, priority, status  
+- Multiple employees can work on the same task  
+
+### 📅 Events & Attendance  
+- Internal events with title, schedule, and organizer info  
+- Employee participation tracked through attendance logs  
+
+### 🧑‍🏫 Feedback & Certificates  
+- Feedback between employees with ratings and comments  
+- Certification tracking with issuing authority, description, and issue date  
+
+### 🧰 Resource & Skill Management  
+- Resource catalog with tags and descriptions  
+- Skills table linked to employees and projects  
+- Tracks programming languages, tools, and soft skills  
 
 ---
 
-### 🔹 Team
-- *Fields:* ID, AreaOfWorking, PointOfContactID, Email, LeadedID, ChannelID, DepartmentID
-- *Relationships:*
-  - Belongs to a *Department*
-  - Uses *Channels*
-  - Involves *Employees*
+## 📊 Data Model Snapshots  
+
+### 📌 ER Diagram  
+Visualizes entities like:  
+`Employee`, `Project`, `Task`, `Event`, `Department`, `Feedback`, `Certificate`, `Skill`, `Resource`, etc.  
+Includes many-to-many and one-to-many relationships using junction tables.
+
+### 📌 Relational Schema  
+Defines tables with fields, datatypes, and relationships. Ensures normalization through:  
+- Primary/foreign keys  
+- Composite keys for bridge tables (e.g., `Employee_Task`, `Department_Event`)  
+- Avoids redundancy and update anomalies  
 
 ---
 
-### 🔹 Channel
-- *Fields:* ID, Type, CreatedAt, ProjectID
-- *Relationships:*
-  - Communicates with *Teams*
-  - Used by *Departments*
+## 🔎 Example Use Cases  
 
----
-
-### 🔹 Policy
-- *Fields:* ID, Title, Description, EffectiveDate, EndDate, RevisionDate, ApprovalStatus, Documents, DepartmentID
-- *Relationships:* Belongs to a *Department*
-
----
-
-### 🔹 Event
-- *Fields:* ID, Name, Date, Time, Location (Address, City, PIN), Link, Agenda, Recurrence
-- *Relationships:* Accessible by *Teams, may be **Internal* or *External*
-
-#### Event Subtypes:
-- *Conference*
-  - Fields: Description
-- *Product Launch*
-  - Fields: Launch Date, Related Product(s)
-
----
-
-### 🔹 Resource
-- *Composite Primary Key:* ID, ProjectID
-- *Fields:* Name
-- *Relationships:*
-  - Categorized into:
-    - *Software* (Size)
-    - *PDF* (Pages)
-    - *Code* (Language, Description, Comments)
-    - *GitHubRepo* (Repo File)
-  - Troubleshoots *Projects*
-
----
-
-### 🔹 Reference
-- *Fields:* ID, Name, Description, Category, Author, Keywords, Link, Related
-- *Purpose:* General linking entity for documentation or citations
-
----
-
-### 🔹 Resume
-- *Fields:* EmployeeID, EducationHistory, WorkExperience, Skills
-- *Relationships:* One-to-one with *Employee*
-
----
-
-### 🔹 Invoice
-- *Fields:* ID, EmployeeID, Status, DueDate, Timestamp (auto), PaymentMethod, Notes
-- *Relationships:* Issued for an *Employee*
-
----
-
-## 🔁 Key Relationships Summary
-
-- 🔄 One-to-many:
-  - Department → Projects, Teams, Policies
-  - Project → Feedback
-- 🔁 Many-to-many:
-  - Employee ↔ Projects (via tracking)
-- 🔗 One-to-one:
-  - Employee → Resume
-- 🧩 Composite relationships:
-  - Resource → Project (via composite PK)
-
----
-
-## 💡 Use Cases
-
-This schema supports:
-- Department and team organization
-- Employee assignments and hierarchy
-- Resource/document management
-- Project tracking and feedback loops
-- Policy and event communication
-- Invoice generation and HR processes
+- Assign a task to 3 employees across 2 departments  
+- Track attendance for a company-wide event  
+- Link a certificate to an employee and validate its issuer  
+- Query all employees working on high-priority tasks in the last month  
 
 ---
 
