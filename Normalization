@@ -1,0 +1,513 @@
+1. Events Relation
+
+Attributes:
+Event_Id, Name, Date, Time, Street, City, State, Country, PIN, Link, Agenda, Recurrence
+
+Functional Dependencies:
+Event_Id → { Name, Date, Time, Street, City, State, Country, PIN, Link, Agenda, Recurrence }
+
+Candidate Key: Event_Id
+
+Let X = Event_Id
+X⁺ = { Event_Id, Name, Date, Time, Street, City, State, Country, PIN, Link, Agenda, Recurrence }
+
+Primary Key: Event_Id
+Foreign Keys: None
+
+The left side of all the functional dependencies in the minimal FD set of the relation Events contains only the super key Event_Id, therefore the relation Events is in BCNF.
+------------------------------------------------------------
+
+2. Employee Relation
+
+Attributes:
+Emp_Id, FirstName, MiddleName, LastName, DOB, Gender, Street, City, State, Country, PIN, Availability, Feedback_Id, TeamId, Contact_Id, Lead_Id, Review_Id, WorkingEmail, PersonalEmail
+
+Functional Dependencies:
+Emp_Id → { FirstName, MiddleName, LastName, DOB, Gender, Street, City, State, Country, PIN, Availability, Feedback_Id, TeamId, Contact_Id, Lead_Id, Review_Id, WorkingEmail, PersonalEmail }
+WorkingEmail → { Emp_Id, FirstName, MiddleName, LastName, DOB, Gender, Street, City, State, Country, PIN, Availability, Feedback_Id, TeamId, Contact_Id, Lead_Id, Review_Id, PersonalEmail }
+PersonalEmail → { Emp_Id, FirstName, MiddleName, LastName, DOB, Gender, Street, City, State, Country, PIN, Availability, Feedback_Id, TeamId, Contact_Id, Lead_Id, Review_Id, WorkingEmail }
+
+Candidate Keys: Emp_Id, WorkingEmail, PersonalEmail
+
+Let X = Emp_Id
+X⁺ = { Emp_Id, FirstName, MiddleName, LastName, DOB, Gender, Street, City, State, Country, PIN, Availability, Feedback_Id, TeamId, Contact_Id, Lead_Id, Review_Id, WorkingEmail, PersonalEmail }
+
+Primary Key: Emp_Id
+Foreign Keys: Feedback_Id, TeamId, Contact_Id, Lead_Id, Review_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Employee contains only super keys (Emp_Id, WorkingEmail, PersonalEmail), therefore the relation Employee is in BCNF.
+------------------------------------------------------------
+
+3. Communication_Channel Relation
+
+Attributes:
+Channel_Id, Type, Project_Id, Creator_Id
+
+Functional Dependencies:
+Channel_Id → { Type, Project_Id, Creator_Id }
+
+Candidate Key: Channel_Id
+
+Let X = Channel_Id
+X⁺ = { Channel_Id, Type, Project_Id, Creator_Id }
+
+Primary Key: Channel_Id
+Foreign Keys: Project_Id, Creator_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Communication_Channel contains only the super key Channel_Id, therefore the relation Channel is in BCNF.
+------------------------------------------------------------
+
+4. Department Relation
+
+Attributes:
+Dep_Id, Name, Description, Budget, Leader_Id, Channel_Id
+
+Functional Dependencies:
+Dep_Id → { Name, Description, Budget, Leader_Id, Channel_Id }
+
+Candidate Key: Dep_Id
+
+Let X = Dep_Id
+X⁺ = { Dep_Id, Name, Description, Budget, Leader_Id, Channel_Id }
+
+Primary Key: Dep_Id
+Foreign Keys: Leader_Id, Channel_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Department contains only the super key Dep_Id, therefore the relation Department is in BCNF.
+------------------------------------------------------------
+
+5. Lead_By Relation
+
+Attributes:
+LeadBy_Id, Dep_Id, Leader_Id, Channel_Id
+
+Functional Dependencies:
+LeadBy_Id → { Dep_Id, Leader_Id, Channel_Id }
+
+Candidate Keys: LeadBy_Id
+
+Let X = LeadBy_Id
+X⁺ = { LeadBy_Id, Dep_Id, Leader_Id, Channel_Id }
+
+Primary Key: LeadBy_Id
+Foreign Keys: Dep_Id, Leader_Id, Channel_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Lead_By contains only the super key LeadBy_Id, therefore the relation Lead_By is in BCNF.
+------------------------------------------------------------
+
+6. Team Relation
+
+Attributes:
+Team_Id, AreaOfWorking, TeamEmail, Leader_Id, Channel_Id, Department_Id
+
+Functional Dependencies:
+Team_Id → { AreaOfWorking, TeamEmail, Leader_Id, Channel_Id, Department_Id }
+TeamEmail → { Team_Id, AreaOfWorking, Leader_Id, Channel_Id, Department_Id }
+
+Candidate Keys: Team_Id, TeamEmail
+
+Let X = Team_Id
+X⁺ = { Team_Id, AreaOfWorking, TeamEmail, Leader_Id, Channel_Id, Department_Id }
+
+Primary Key: Team_Id
+Foreign Keys: Leader_Id, Channel_Id, Department_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Team contains only the super keys Team_Id and TeamEmail, therefore the relation Team is in BCNF.
+------------------------------------------------------------
+
+7. Project Relation
+
+Attributes:
+Project_Id, Name, StartDate, DueDate, Status, Budget, Objective, Department_Id, Team_Id
+
+Functional Dependencies:
+Project_Id → { Name, StartDate, DueDate, Status, Budget, Objective, Department_Id, Team_Id }
+
+Candidate Key: Project_Id
+
+Let X = Project_Id
+X⁺ = { Project_Id, Name, StartDate, DueDate, Status, Budget, Objective, Department_Id, Team_Id }
+
+Primary Key: Project_Id
+Foreign Keys: Department_Id, Team_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Project contains only the super key Project_Id, therefore the relation Project is in BCNF.
+------------------------------------------------------------
+
+8. Feedback Relation
+
+Attributes:
+Feedback_Id, Emp_Id, Title, Description
+
+Functional Dependencies:
+Feedback_Id → { Emp_Id, Title, Description }
+
+Candidate Keys: Feedback_Id
+
+Let X = Feedback_Id
+X⁺ = { Feedback_Id, Emp_Id, Title, Description }
+
+Primary Key: Feedback_Id
+Foreign Keys: Emp_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Feedback contains only the super key Feedback_Id, therefore the relation Feedback is in BCNF.
+------------------------------------------------------------
+
+9. FeedbackTags Relation
+
+Attributes:
+Feedback_Id, Tag
+
+Functional Dependencies:
+{ Feedback_Id, Tag } → {} (no non-trivial dependency other than the primary key)
+
+Candidate Keys: { Feedback_Id, Tag }
+
+Let X = { Feedback_Id, Tag }
+X⁺ = { Feedback_Id, Tag }
+
+Primary Key: { Feedback_Id, Tag }
+Foreign Keys: Feedback_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation FeedbackTags contains only the super key { Feedback_Id, Tag }, therefore the relation FeedbackTags is in BCNF.
+------------------------------------------------------------
+
+10. Resume Relation
+
+Attributes:
+Emp_Id, EducationHistory, WorkExperience, TechnicalSkills
+
+Functional Dependencies:
+Emp_Id → { EducationHistory, WorkExperience, TechnicalSkills }
+
+Candidate Key: Emp_Id
+
+Let X = Emp_Id
+X⁺ = { Emp_Id, EducationHistory, WorkExperience, TechnicalSkills }
+
+Primary Key: Emp_Id
+Foreign Key: Emp_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Resume contains only the super key Emp_Id, therefore the relation Resume is in BCNF.
+------------------------------------------------------------
+
+11. Tracking Relation
+
+Attributes:
+Tracking_Id, Emp_Id, Project_Id, Role, StartDate, EndDate
+
+Functional Dependencies:
+Tracking_Id → { Emp_Id, Project_Id, Role, StartDate, EndDate }
+
+Candidate Key: Tracking_Id
+
+Let X = Tracking_Id
+X⁺ = { Tracking_Id, Emp_Id, Project_Id, Role, StartDate, EndDate }
+
+Primary Key: Tracking_Id
+Foreign Keys: Emp_Id, Project_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Tracking contains only the super key Tracking_Id, therefore the relation Tracking is in BCNF.
+------------------------------------------------------------
+
+12. Invoice Relation
+
+Attributes:
+Invoice_Id, Amount, DateIssued, DueDate, Emp_Id
+
+Functional Dependencies:
+Invoice_Id → { Amount, DateIssued, DueDate, Emp_Id }
+
+Candidate Key: Invoice_Id
+
+Let X = Invoice_Id
+X⁺ = { Invoice_Id, Amount, DateIssued, DueDate, Emp_Id }
+
+Primary Key: Invoice_Id
+Foreign Key: Emp_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Invoice contains only the super key Invoice_Id, therefore the relation Invoice is in BCNF.
+------------------------------------------------------------
+
+13. Resource Relation
+
+Attributes:
+Resource_Id, Name, Type, Quantity, Project_Id
+
+Functional Dependencies:
+Resource_Id → { Name, Type, Quantity, Project_Id }
+
+Candidate Key: Resource_Id
+
+Let X = Resource_Id
+X⁺ = { Resource_Id, Name, Type, Quantity, Project_Id }
+
+Primary Key: Resource_Id
+Foreign Key: Project_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Resource contains only the super key Resource_Id, therefore the relation Resource is in BCNF.
+------------------------------------------------------------
+
+14. Pdf Relation
+
+Attributes:
+Resource_Id, Pages, Description, Tags
+
+Functional Dependencies:
+{ Resource_Id } → { Pages, Description, Tags }
+
+Candidate Key:
+{ Resource_Id }
+
+Let X = { Resource_Id }
+X⁺ = { Resource_Id, Pages, Description, Tags }
+
+Primary Key:{ Resource_Id }
+
+Foreign Key:Resource_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Pdf contains only the super key { Resource_Id }, therefore the relation Pdf is in BCNF.
+------------------------------------------------------------
+
+15. Git Repository Relation
+
+Attributes:
+Resource_Id, NumberOfFiles
+
+Functional Dependencies:
+{ Resource_Id } → { NumberOfFiles }
+
+Candidate Key:{ Resource_Id }
+
+Let X = { Resource_Id }
+X⁺ = { Resource_Id, NumberOfFiles }
+
+Primary Key:{ Resource_Id }
+
+Foreign Key:Resource_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Git Repository contains only the super key { Resource_Id }, therefore the relation Git Repository is in BCNF.
+------------------------------------------------------------
+
+16. Software Relation
+
+Attributes:
+Resource_Id, Size
+
+Functional Dependencies:
+{ Resource_Id } → { Size }
+
+Candidate Key:{ Resource_Id }
+
+Let X = { Resource_Id }
+X⁺ = { Resource_Id, Size }
+
+Primary Key:{ Resource_Id }
+
+Foreign Key:Resource_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Software contains only the super key { Resource_Id }, therefore the relation Software is in BCNF.
+------------------------------------------------------------
+
+17. Code Relation
+
+Attributes:
+Resource_Id, Language, Description, Comments
+
+Functional Dependencies:
+{ Resource_Id } → { Language, Description, Comments }
+
+Candidate Key:{ Resource_Id }
+
+Let X = { Resource_Id }
+X⁺ = { Resource_Id, Language, Description, Comments }
+
+Primary Key:{ Resource_Id }
+
+Foreign Key:Resource_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Code contains only the super key { Resource_Id }, therefore the relation Code is in BCNF.
+------------------------------------------------------------
+
+18. Policy Relation
+
+Attributes:
+Policy_Id, Title, Description, EffectiveDate, DueDate, RevisionDate, ApprovalStatus, Department_Id
+
+Functional Dependencies:
+{ Policy_Id } → { Title, Description, EffectiveDate, DueDate, RevisionDate, ApprovalStatus, Department_Id }
+{ Title } → { Policy_Id, Description, EffectiveDate, DueDate, RevisionDate, ApprovalStatus, Department_Id }
+
+Candidate Keys:
+{ Policy_Id }, { Title }
+
+Let X = { Policy_Id }
+X⁺ = { Policy_Id, Title, Description, EffectiveDate, DueDate, RevisionDate, ApprovalStatus, Department_Id }
+
+Primary Key:
+{ Policy_Id }
+
+Foreign Keys:
+Department_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Policy contains only the super keys { Policy_Id } and { Title }, therefore the relation Policy is in BCNF.
+------------------------------------------------------------
+
+19. PolicyDocuments Relation
+
+Attributes:
+Policy_Id, DocumentPath
+
+Functional Dependencies:
+{ Policy_Id, DocumentPath } → {}
+
+Candidate Key:
+{ Policy_Id, DocumentPath }
+
+Let X = { Policy_Id, DocumentPath }
+X⁺ = { Policy_Id, DocumentPath }
+
+Primary Key:
+{ Policy_Id, DocumentPath }
+
+Foreign Keys:
+Policy_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation PolicyDocuments contains only the super key { Policy_Id, DocumentPath }, therefore the relation PolicyDocuments is in BCNF.
+------------------------------------------------------------
+
+20. ProductLaunch Relation
+
+Attributes:
+Event_Id
+
+Functional Dependencies:
+Event_Id → { }
+
+Candidate Key: Event_Id
+
+Let X = Event_Id
+X⁺ = { Event_Id }
+
+Primary Key: Event_Id
+Foreign Key: Event_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation ProductLaunch contains only the super key Event_Id, therefore the relation ProductLaunch is in BCNF.
+------------------------------------------------------------
+
+21. Conferences Relation
+
+Attributes:
+Event_Id, Description
+
+Functional Dependencies:
+Event_Id → { Description }
+
+Candidate Key: Event_Id
+
+Let X = Event_Id
+X⁺ = { Event_Id, Description }
+
+Primary Key: Event_Id
+Foreign Key: Event_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Conferences contains only the super key Event_Id, therefore the relation Conferences is in BCNF.
+------------------------------------------------------------
+
+22. LaunchLeaders Relation
+
+Attributes:
+Event_Id, LeaderName
+
+Functional Dependencies:
+{ Event_Id, LeaderName } → { }
+
+Candidate Key: { Event_Id, LeaderName }
+
+Let X = { Event_Id, LeaderName }
+X⁺ = { Event_Id, LeaderName }
+
+Primary Key: { Event_Id, LeaderName }
+Foreign Key: Event_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation LaunchLeaders contains only the super key { Event_Id, LeaderName }, therefore the relation LaunchLeaders is in BCNF.
+------------------------------------------------------------
+
+23. Invited Relation
+
+Attributes:
+Team_Id, Event_Id, ReminderDate
+
+Functional Dependencies:
+{ Team_Id, Event_Id } → { ReminderDate }
+
+Candidate Key: { Team_Id, Event_Id }
+
+Let X = { Team_Id, Event_Id }
+X⁺ = { Team_Id, Event_Id, ReminderDate }
+
+Primary Key: { Team_Id, Event_Id }
+Foreign Keys: Team_Id, Event_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation Invited contains only the super key { Team_Id, Event_Id }, therefore the relation Invited is in BCNF.
+------------------------------------------------------------
+
+24. Reference Relation
+
+Attributes:
+Reference_Id, Name, Description, Category, Author, Link, Rating
+
+Functional Dependencies:
+Reference_Id → { Name, Description, Category, Author, Link, Rating }
+
+Candidate Key:Reference_Id
+
+Let X = Reference_Id
+X⁺ = { Reference_Id, Name, Description, Category, Author, Link, Rating }
+
+Primary Key:Reference_Id
+
+Foreign Keys:None
+
+The left side of all the functional dependencies in the minimal FD set of the relation Reference contains only the super key Reference_Id, therefore the relation Reference is in BCNF.
+------------------------------------------------------------
+
+25. ReferenceKeywords Relation
+
+Attributes:
+Reference_Id, Keyword
+
+Functional Dependencies:
+{ Reference_Id, Keyword } → { }
+
+Candidate Key:{ Reference_Id, Keyword }
+
+Let X = { Reference_Id, Keyword }
+X⁺ = { Reference_Id, Keyword }
+
+Primary Key:{ Reference_Id, Keyword }
+
+Foreign Keys:Reference_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation ReferenceKeywords contains only the super key { Reference_Id, Keyword }, therefore the relation ReferenceKeywords is in BCNF.
+------------------------------------------------------------
+
+26. External Relation
+
+Attributes:
+Team_Id, Reference_Id, Accessible
+
+Functional Dependencies:
+{ Team_Id, Reference_Id } → { Accessible }
+
+Candidate Key:{ Team_Id, Reference_Id }
+
+Let X = { Team_Id, Reference_Id }
+X⁺ = { Team_Id, Reference_Id, Accessible }
+
+Primary Key:{ Team_Id, Reference_Id }
+
+Foreign Keys:Team_Id, Reference_Id
+
+The left side of all the functional dependencies in the minimal FD set of the relation External contains only the super key { Team_Id, Reference_Id }, therefore the relation External is in BCNF.
+------------------------------------------------------------
