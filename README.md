@@ -10,4 +10,5 @@ Here’s the system ER diagram:
 
 Here’s the system relational diagram:  
 
-![Relational Diagram](./Relational_Diagram_whitebg.svg)  
+![Relational Diagram](./Relational_Diagram.svg)  
+
