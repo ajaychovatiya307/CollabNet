@@ -1,4 +1,4 @@
-CollabNet
+🌐 CollabNet
 A comprehensive DBMS project to power organizational collaboration — enabling companies to manage employees, projects, events, and policies efficiently.
 
 📚 Project Overview
@@ -58,3 +58,4 @@ psql -U username -d database -f DDL_Script.sql
 # Load sample data  
 psql -U username -d database -f Data_Insertion_Script.sql
 ```
+
