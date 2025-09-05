@@ -624,6 +624,7 @@ INSERT INTO External (TeamId, ReferenceId, Accessible) VALUES
 (19, 17, TRUE),
 (20, 19, FALSE);
 
+
 -- =========================
 -- Final updates (set FKs that we left NULL earlier)
 -- 1) Link channels to projects
