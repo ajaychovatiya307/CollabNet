@@ -1,61 +1,74 @@
-🌐 CollabNet
-A comprehensive DBMS project to power organizational collaboration — enabling companies to manage employees, projects, events, and policies efficiently.
+# 🌐 CollabNet
+*A comprehensive DBMS project to power organizational collaboration — enabling companies to manage employees, projects, events, and policies efficiently.*
 
-📚 Project Overview
-CollabNet is a relational database project designed for modern organizational management. It provides a centralized system for HR operations, project tracking, event coordination, and policy compliance through structured, normalized data.
+---
 
-It serves as a centralized system for:
+## 📚 Project Overview
+CollabNet is a **relational database system** designed for modern organizational management. It centralizes HR operations, project tracking, event coordination, and policy compliance through a well-structured and normalized schema.
 
-👥 Employee Management to handle staff hierarchies, team assignments, and performance tracking
-🏢 Departments & Teams to organize workforces with budgets, leadership, and communication channels
-📊 Project Lifecycle to track budgets, timelines, resources, and deliverables across teams
-📅 Event Coordination for company meetings, conferences, product launches, and team activities
-📋 Policy Management with approval workflows, document control, and compliance tracking
-📚 Resource Library for PDFs, code repositories, documentation, and reference materials
-"Our objective was to create a scalable organizational database that supports real-world enterprise features like employee hierarchies, project tracking, and policy compliance."
+The system serves as a unified platform for:
 
-🛠️ Features
-🧱 Fully normalized schema (up to BCNF) with 26+ tables
-📄 Comprehensive DDL with employee, project, event, and policy modules
-⚙️ Referential integrity through foreign keys and hierarchical relationships
-🔍 Sample data with 20+ records per entity for realistic testing
-📊 ER Diagram & Relational Schema visualization
-🧪 Tested on PostgreSQL with global employee distribution
+- **👥 Employee Management** — staff hierarchies, team assignments, and performance tracking  
+- **🏢 Departments & Teams** — workforce organization with budgets, leadership, and communication channels  
+- **📊 Project Lifecycle** — budgets, timelines, resources, and deliverables across teams  
+- **📅 Event Coordination** — meetings, conferences, product launches, and team activities  
+- **📋 Policy Management** — approval workflows, document control, and compliance tracking  
+- **📚 Resource Library** — PDFs, code repositories, documentation, and reference materials  
 
-## ER Diagram  
+> **Objective:** Build a scalable, enterprise-ready database supporting **employee hierarchies, project tracking, and policy compliance** through **BCNF-level normalization** and robust referential integrity.
 
-Here's the system ER diagram showing entity relationships:
+---
 
-![ER Diagram](ER_diagram.svg)  
+## 🛠️ Key Features
+- 🧱 **Fully normalized schema** (up to BCNF) with 26+ tables  
+- 📄 **Comprehensive DDL** covering employee, project, event, and policy modules  
+- ⚙️ **Referential integrity** via foreign keys and cascading rules  
+- 🔍 **Sample data** with 20+ realistic records per table for testing  
+- 📊 **ER Diagram & Relational Schema** for clear visualization  
+- 🧪 **PostgreSQL tested** with support for global employee distribution  
 
-## Relational Schema  
+---
 
-Here's the system relational diagram:
+## 📊 ER Diagram
+Here’s the system ER diagram showing entity relationships:
 
-![Relational Diagram](Relational_Diagram.svg)  
+![ER Diagram](./ER_diagram.svg)
 
-🧾 Use Case Highlights
-👥 Application Users
-Employees & Managers – Create profiles, track performance, manage teams, and coordinate projects.
-Departments & Teams – Organize workflows, allocate budgets, and maintain communication channels.
-HR & Admin – Handle recruitment, policy compliance, event planning, and resource management.
+---
 
-🔎 Core Functionalities
-Employee Registration & Hierarchy – Unique employee ID with personal details, team assignments, reporting structure.
-Department & Team Structure – Organizational units with budgets, leadership, and communication channels.
-Project Management – Complete lifecycle tracking with budgets, timelines, resources, and team assignments.
-Event Coordination – Company events, meetings, conferences with team invitations and scheduling.
-Policy & Compliance – Document management, approval workflows, and compliance tracking.
-Resource Management – Multi-type resources (PDFs, Git repos, software) with project linkage.
-Communication Integration – Multi-platform channels (Slack, Teams, Email) for team collaboration.
+## 🗂 Relational Schema
+Here’s the system relational diagram:
 
-## Setup
+![Relational Diagram](./Relational_Diagram.svg)
+
+---
+
+## 🧾 Use Case Highlights
+### 👥 Application Users
+- **Employees & Managers** – Create profiles, track performance, manage teams, and coordinate projects  
+- **Departments & Teams** – Organize workflows, allocate budgets, and maintain communication channels  
+- **HR & Admin** – Handle recruitment, policy compliance, event planning, and resource management  
+
+### 🔎 Core Functionalities
+- **Employee Registration & Hierarchy** – Unique employee ID with personal details, team assignments, reporting structure  
+- **Department & Team Structure** – Organizational units with budgets, leadership, and communication channels  
+- **Project Management** – Complete lifecycle tracking with budgets, timelines, resources, and team assignments  
+- **Event Coordination** – Company events, meetings, conferences with team invitations and scheduling  
+- **Policy & Compliance** – Document management, approval workflows, and compliance tracking  
+- **Resource Management** – Multi-type resources (PDFs, Git repos, software) with project linkage  
+- **Communication Integration** – Multi-platform channels (Slack, Teams, Email) for team collaboration  
+
+---
+
+## 🚀 Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/ajaychovatiya307/CollabNet.git
+cd CollabNet
+
 # Create schema
 psql -U username -d database -f DDL_Script.sql
 
-# Load sample data  
+# Load sample data
 psql -U username -d database -f Data_Insertion_Script.sql
-```
-
