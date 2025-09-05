@@ -15,7 +15,7 @@ Primary Key: Event_Id
 Foreign Keys: None
 
 The left side of all the functional dependencies in the minimal FD set of the relation Events contains only the super key Event_Id, therefore the relation Events is in BCNF.
-------------------------------------------------------------
+-------------------------------------------------------------
 
 2. Employee Relation
 
