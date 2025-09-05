@@ -3,6 +3,7 @@
 -- Purpose: Collaboration, HR, Projects, Events, and Policies
 -- ========================================================
 
+
 DROP SCHEMA IF EXISTS CollabNet CASCADE;
 CREATE SCHEMA CollabNet;
 SET SEARCH_PATH TO CollabNet;
